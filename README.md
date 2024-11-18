@@ -109,3 +109,41 @@ project/
 	   filippo.io/edwards25519 v1.1.0 // indirect
 	   github.com/go-sql-driver/mysql v1.8.1 // indirect
    )
+
+# go files
+## overview
+2 main files :
+1) go.mod
+2) go.sum
+
+Why Are They Important?
+- Reproducibility: Ensures everyone working on the project uses the same versions of dependencies.
+- Security: Prevents tampering with dependencies by verifying their integrity.
+- Ease of Use: Simplifies dependency management in Go projects.
+
+## go.mod
+- Found in server/go.mod
+- The go.mod file is the main configuration file for Go modules. 
+  It declares the module's path (name) and lists the dependencies your project requires.
+
+Key Features of go.mod:
+- Module Path: The name of your module, typically a URL or a descriptive name.
+- Dependencies: Lists the specific versions of the libraries your project depends on.
+
+How It's Created:
+- Running go mod init <module_name> creates the go.mod file.
+- When you add dependencies (e.g., go get), they are listed here.
+
+## go.sum
+- The go.sum file contains checksums (hashes) for all the modules and their dependencies used in your project. 
+- It ensures that the exact versions of dependencies are consistent and have not been tampered with.
+
+Key Features of go.sum:
+- Ensures secure and reproducible builds.
+- Contains two checksums for each dependency:
+   - module version hash
+   - module's downloaded content hash
+
+How It's Created:
+- Automatically generated and updated by Go commands like go get, go mod tidy, or go build.
+- You don't edit it manually; it’s managed by the Go toolchain.
