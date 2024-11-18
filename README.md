@@ -76,5 +76,36 @@ project/
 > Modules are within /server/modules
 
 1. Initialize Go Modules : 
-   $ cd server && go mod init server
+   $ cd server
+   $ go mod init server
 
+   go: creating new go.mod: module server
+   go: to add module requirements and sums:
+	go mod tidy
+
+   - A file, go.mod ( Go module definition) is created.
+   
+   $ cat go.mod 
+     module server
+
+     go 1.18
+
+
+2. Install the required package
+   - In this case it is the github.com/go-sql-driver/mysql package
+   
+   $ go get -u github.com/go-sql-driver/mysql
+   go: added filippo.io/edwards25519 v1.1.0
+   go: added github.com/go-sql-driver/mysql v1.8.1
+
+   - Your go.mod will be updated.
+
+   $ cat go.mod 
+   module server
+
+   go 1.18
+
+   require (
+	   filippo.io/edwards25519 v1.1.0 // indirect
+	   github.com/go-sql-driver/mysql v1.8.1 // indirect
+   )
