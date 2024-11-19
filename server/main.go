@@ -42,29 +42,31 @@ func main() {
     // perform a db.Query
 	// This will return either the data or an err that we can handle.
 	rows, err := db.Query(query) // Replace 18 with the desired age filter
-	
+
 	if err != nil {
 		log.Fatalf("Error executing query: %v", err)
 	}
 	defer rows.Close()
 
-	// Iterate through the rows
-	for rows.Next() {
-		var id int
-		var name string
+	fmt.Println(rows)
 
-		// Scan the columns into variables
-		err := rows.Scan(&id, &name)
-		if err != nil {
-			log.Fatalf("Error scanning row: %v", err)
-		}
+	// // Iterate through the rows
+	// for rows.Next() {
+	// 	var id int
+	// 	var name string
 
-		// Print the results
-		fmt.Printf("ID: %d, Name: %s\n", id, name)
-	}
+	// 	// Scan the columns into variables
+	// 	err := rows.Scan(&id, &name)
+	// 	if err != nil {
+	// 		log.Fatalf("Error scanning row: %v", err)
+	// 	}
 
-	// Check for errors encountered during iteration
-	if err = rows.Err(); err != nil {
-		log.Fatalf("Error iterating over rows: %v", err)
-	}
+	// 	// Print the results
+	// 	fmt.Printf("ID: %d, Name: %s\n", id, name)
+	// }
+
+	// // Check for errors encountered during iteration
+	// if err = rows.Err(); err != nil {
+	// 	log.Fatalf("Error iterating over rows: %v", err)
+	// }
 }
