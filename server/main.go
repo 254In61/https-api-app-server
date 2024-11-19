@@ -14,11 +14,17 @@ func main() {
 	dsn := "panther:panther2024@tcp(10.152.183.178:3306)/mydb"
 
 	// Open a connection to the database
+	// use sql.Open to connect to our database.
+	// This will return either db or an err that we can handle.
 	db, err := sql.Open("mysql", dsn)
-	if err != nil {
-		log.Fatalf("Error opening database: %v", err)
-	}
-	defer db.Close()
+	
+    // if there is an error opening the connection, handle it
+    if err != nil {
+        panic(err.Error())
+    }
+
+	// defer the close till after the main function has finished executing
+    defer db.Close()
 
 	// Verify the connection
 	err = db.Ping()
@@ -29,8 +35,14 @@ func main() {
 	fmt.Println("Connected to the database successfully!")
 
 	// Execute an SQL query
+	// db.Query(sql) allows us to perform any SQL command we so desire. 
+	// We can simply construct the query string and pass it in as a parameter
 	query := "select * from countries"
-	rows, err := db.Query(query, 18) // Replace 18 with the desired age filter
+
+    // perform a db.Query
+	// This will return either the data or an err that we can handle.
+	rows, err := db.Query(query) // Replace 18 with the desired age filter
+	
 	if err != nil {
 		log.Fatalf("Error executing query: %v", err)
 	}
